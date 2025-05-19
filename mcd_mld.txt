@@ -1,0 +1,73 @@
+<MCD>
+    <entités>
+        
+        client
+        - cli_id (pk)
+        - cli_nom
+
+        moniteur
+        - mon_id (pk)
+        - mon_nom
+
+        voiture
+        - voi_id (pk)
+        - voi_mat
+
+        lecon
+        - lec_id (pk)
+        - lec_date
+        - lec_hdebut
+        - lec_hfin
+        - lec_type
+
+    </entités>
+
+    <associations>
+
+        recevoir :
+        - client 0,N
+        - lecon 1,N
+
+        donner :
+        - moniteur 0,N
+        - lecon 1,1
+
+        affecter :
+        - voiture 0,N
+        - lecon 0,1
+
+    </associations>
+</MCD>
+
+<MLD>
+    client
+    - cli_id int not null auto_increment primary key,
+    - cli_nom varchar(100) not null 
+
+    moniteur
+    - mon_id int not null auto_increment primary key,
+    - mon_nom varchar(100) not null 
+
+    voiture
+    - voi_id int not null auto_increment primary key,
+    - voi_mat varchar(100) not null 
+
+    lecon
+    - lec_id int not null auto_increment primary key,
+    - lec_date date not null ,
+    - lec_hdebut time not null ,
+    - lec_hfin time not null ,
+    - lec_type varchar(50) not null ,
+    - lec_moniteur int not null,
+    - lec_voiture int,
+     cs1 foreign key lec_moniteur references moniteur(mon_id),
+     cs2 foreign key lec_voiture references voiture(voi_id)
+
+    recevoir    
+    - rec_client not null (fk)
+    - rec_lecon  not null (fk)
+     cs3 foreign key rec_client references client(cli_id),
+     cs4 foreign key rec_lecon references lecon(lec_id),
+    primary key (rec_lecon,rec_client) 
+
+</MLD>

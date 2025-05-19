@@ -1,0 +1,74 @@
+un utilisateur utilise le site :
+   - ID_cLient (Identifiant unique)
+   - Nom
+
+
+un Moniteur donne des  :
+   - ID_Moniteur (Identifiant unique)
+   - Nom
+
+des leçons sont données aux clients :
+   - ID_leçon (Identifiant unique)
+   - type
+   - heure_debut
+   - heure_fin
+
+des voitures sont affectée  :
+   - ID_voiture (Identifiant unique)
+   - Numéro d'immatriculation
+
+Régles de gestion :
+- Un livre peut avoir plusieurs auteurs.
+- Un adhérent peut emprunter plusieurs livres, mais un livre ne peut être emprunté que par un seul adhérent à la fois.
+- Les dates d'emprunt et de retour doivent être cohérentes (la date de retour ne peut pas être antérieure à la date d'emprunt).
+
+1. MCD
+<entités>
+client
+moniteur
+leçon
+voiture
+</entite>
+
+<associations>
+donner (un moniteur donne des leçons à un ou plusieurs clients)
+- moniteur : 1,1
+- lecon : 1,N
+- client : 1,N
+
+affectation : (une voiture peut être affectée à une leçon)
+- lecon 1,N
+- voiture 0,1
+</associations>
+
+2. MLD
+client
+   - ID_cLient (Identifiant unique)
+   - Nom
+
+
+Moniteur
+   - ID_Moniteur (Identifiant unique)
+   - Nom
+
+leçon
+   - ID_leçon (Identifiant unique)
+   - type
+   - heure_debut
+   - heure_fin
+
+voiture
+   - ID_voiture (Identifiant unique)
+   - Numéro d'immatriculation
+
+ecrire
+- don_id pk
+- don_moniteur fk => mon_id
+- don_lecon fk => lec_id
+- don_client fk => cli_id
+
+affectation
+- aff_id pk
+- aff_lecon fk => lec_id
+- aff_voiture fk => voi_id
+
