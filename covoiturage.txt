@@ -2,64 +2,80 @@ des utilisateurs utilisent le site:
    - ID_utilisateur (Identifiant unique)
    - Nom
 
-un utilisateur possède un profile :
-   - ID_profile (Identifiant unique)
+un utilisateur possède un profil :
+   - ID_profil (Identifiant unique)
    - Type
 
 des trajets sont effectués :
    - ID_trajet (Identifiant unique)
+   - départ
    - destination
    - moyen de transport
    - date_heure_départ
    - date_heure_arrivée
    - arrêt_intermédiaire
+   - date_création
+
+Régles de gestion :
+- Les utilisateurs peuvent agir en tant qu'offreurs de trajets et/ou en tant que personnes intéressées par des trajets.
+- Les utilisateurs qui proposent des trajets reçoivent, lors de la création d'un trajet, le rôle de fournisseur pour le trajet créé.
+- Les destinations intermédiaires (escales) sont définies par le fournisseur et saisies manuellement.
+- Les prestataires peuvent à tout moment supprimer et modifier les trajets qu'ils proposent. Dans ce cas, un mail de notification est automatiquement envoyé aux personnes inscrites sur ce trajet.
+- Les personnes inscrites sur un trajet peuvent à tout moment se désinscrire. Dans ce cas, un mail de notification est automatiquement envoyé au fournisseur et aux personnes inscrites.
 
 1. MCD
 <entités>
 utilisateur
-profile
+profil
 trajet
 </entite>
 
 <associations>
-proposer (un utilisateur quelconque peut proposer des trajets à un ou plusieurs clients)
-- moniteur : 1,1
-- lecon : 1,N
-- client : 1,N
+proposer (un utilisateur quelconque peut proposer un trajet)
+- utilisateur : 1,1
+- trajet : 1,1
 
-affectation : (une voiture peut être affectée à une leçon)
-- lecon 1,N
-- voiture 0,1
+inscrire (un utilisateur peut s'inscrire à un trajet)
+- utilisateur 1,N
+- trajet 1,N
+
+posséder (un utilisateur possède un profil spécifique)
+- utilisateur 1,N
+- profil 1,1
+
 </associations>
 
 2. MLD
-client
-   - ID_cLient (Identifiant unique)
+utilisateur
+   - ID_utilisateur (Identifiant unique)
    - Nom
 
 
-Moniteur
-   - ID_Moniteur (Identifiant unique)
-   - Nom
-
-leçon
-   - ID_leçon (Identifiant unique)
+profil
+   - ID_profil (Identifiant unique)
    - type
-   - heure_debut
-   - heure_fin
 
-voiture
-   - ID_voiture (Identifiant unique)
-   - Numéro d'immatriculation
+trajet
+   - ID_trajet (Identifiant unique)
+   - départ
+   - destination
+   - moyen de transport
+   - date_heure_départ
+   - date_heure_arrivée
+   - arrêt_intermédiaire
+   - date_création
 
-ecrire
-- don_id pk
-- don_moniteur fk => mon_id
-- don_lecon fk => lec_id
-- don_client fk => cli_id
+proposer
+- pro_id pk
+- pro_utilisateur fk => uti_id
+- pro_trajet fk => traj_id
 
-affectation
-- aff_id pk
-- aff_lecon fk => lec_id
-- aff_voiture fk => voi_id
+inscrire
+- ins_id pk
+- ins_utilisateur fk => uti_id
+- ins_trajet fk => traj_id
 
+posséder
+- pos_id pk
+- pos_utilisateur fk => uti_id
+- pos_profil fk => prof_id
