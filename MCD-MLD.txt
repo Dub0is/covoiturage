@@ -1,6 +1,12 @@
+dictionnaire des donneés:
+
 des utilisateurs utilisent le site:
    - ID_utilisateur (Identifiant unique)
    - Nom
+   - Prénom
+   - profil
+   - Adresse mail
+   - Mot de passe
 
 un utilisateur possède un profil :
    - ID_profil (Identifiant unique)
@@ -45,37 +51,43 @@ posséder (un utilisateur possède un profil spécifique)
 
 </associations>
 
-2. MLD
-utilisateur
-   - ID_utilisateur (Identifiant unique)
-   - Nom
+<MLD>
 
+utilisateur
+- uti_id (pk)
+- uti_nom
+- uti_profil (fk)
+- uti_prenom
+- uti_adresse_mail
+- uti_mot_de_passe
 
 profil
-   - ID_profil (Identifiant unique)
-   - type
+- prof_id (pk)
+- prof_type
 
 trajet
-   - ID_trajet (Identifiant unique)
-   - départ
-   - destination
-   - moyen de transport
-   - date_heure_départ
-   - date_heure_arrivée
-   - arrêt_intermédiaire
-   - date_création
+- traj_id(pk)
+- traj_départ
+- traj_destination
+- traj_moyen de transport
+- traj_date_heure_départ
+- traj_date_heure_arrivée
+- traj_arrêt_intermédiaire
+- traj_date_création
 
 proposer
-- pro_id pk
-- pro_utilisateur fk => uti_id
-- pro_trajet fk => traj_id
+- pro_id (pk)
+- pro_utilisateur (fk)
+- pro_trajet (fk)
 
 inscrire
-- ins_id pk
-- ins_utilisateur fk => uti_id
-- ins_trajet fk => traj_id
+- ins_id (pk)
+- ins_utilisateur (fk)
+- ins_trajet (fk)
 
-posséder
-- pos_id pk
-- pos_utilisateur fk => uti_id
-- pos_profil fk => prof_id
+posseder
+- pos_id (pk)
+- pos_utilisateur (fk)
+- pos_profil (fk)
+
+</MLD>
