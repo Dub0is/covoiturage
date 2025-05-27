@@ -21,6 +21,7 @@ des trajets sont effectués :
    - date_heure_arrivée
    - arrêt_intermédiaire
    - date_création
+   - fournisseur
 
 Régles de gestion :
 - Les utilisateurs peuvent agir en tant qu'offreurs de trajets et/ou en tant que personnes intéressées par des trajets.
@@ -38,7 +39,7 @@ trajet
 
 <associations>
 proposer (un utilisateur quelconque peut proposer un trajet)
-- utilisateur : 1,1
+- utilisateur : 1,N
 - trajet : 1,1
 
 inscrire (un utilisateur peut s'inscrire à un trajet)
@@ -46,8 +47,8 @@ inscrire (un utilisateur peut s'inscrire à un trajet)
 - trajet 1,N
 
 posséder (un utilisateur possède un profil spécifique)
-- utilisateur 1,N
-- profil 1,1
+- utilisateur 1,1
+- profil 1,N
 
 </associations>
 
@@ -62,32 +63,23 @@ utilisateur
 - uti_mot_de_passe
 
 profil
-- prof_id (pk)
-- prof_type
+- pro_id (pk)
+- pro_type
 
 trajet
-- traj_id(pk)
-- traj_départ
-- traj_destination
-- traj_moyen de transport
-- traj_date_heure_départ
-- traj_date_heure_arrivée
-- traj_arrêt_intermédiaire
-- traj_date_création
-
-proposer
-- pro_id (pk)
-- pro_utilisateur (fk)
-- pro_trajet (fk)
+- tra_id(pk)
+- tra_départ
+- tra_destination
+- tra_moyen de transport
+- tra_date_heure_départ
+- tra_date_heure_arrivée
+- tra_arrêt_intermédiaire
+- tra_date_création
+- tra_fournisseur (fk)
 
 inscrire
 - ins_id (pk)
 - ins_utilisateur (fk)
 - ins_trajet (fk)
-
-posseder
-- pos_id (pk)
-- pos_utilisateur (fk)
-- pos_profil (fk)
 
 </MLD>
