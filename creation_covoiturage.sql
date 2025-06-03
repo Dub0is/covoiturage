@@ -26,8 +26,8 @@ create table trajet (
     tra_depart varchar(100) not null,
     tra_destination varchar(50) not null,
     tra_moyen_de_transport varchar(50) not null,
-    tra_date_heure_depart date time not null,
-    tra_date_heure_arrivee date time not null,
+    tra_date_heure_depart datetime not null,
+    tra_date_heure_arrivee datetime not null,
     tra_arret_intermediaire varchar(50) not null,
     tra_date_creation date not null,
     tra_fournisseur int not null
@@ -45,7 +45,7 @@ drop table if exists inscrire;
 create table inscrire (
     ins_id int not null auto_increment primary key,    
     ins_utilisateur int not null,
-    ins_trajet int not null,
+    ins_trajet int not null
 )engine=innodb;
 
 set foreign_key_checks =1;
