@@ -1,0 +1,1 @@
+﻿- définir les classes "table" et "ctr_controleur" comme abstract.

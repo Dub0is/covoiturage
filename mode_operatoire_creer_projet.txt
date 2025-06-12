@@ -1,0 +1,9 @@
+Creer une nouveau projet :
+-------------------------
+0. Créer un nouveau dossier projet.
+1. Copier le framework dans le nouveau dossier projet (cf. readme.txt).
+2. Dans "/application/config/config.php" modifier la connexion à la base de données.
+3. Supprimer les fichiers générés du précédent projet.
+4. Créer la base de données si ce n'est pas le cas.
+5. Déclencher le générateur (pour créer le CRUD de chaque table)
+6. Créer un jeu de données : /table/Database.class.php::dataset
