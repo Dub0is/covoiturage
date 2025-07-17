@@ -12,9 +12,22 @@ function utilisateur(string $nbutilisateur): int
     echo "<h3>utilisateur</h3>";
     $row = [];
     $cpt = 0;
+    $cpt2 = 0;
     for ($i = 1; $i <= $nbutilisateur; $i++) {
         $mdp = password_hash("mdp", PASSWORD_DEFAULT);
-        $row[] = "(null,'nom$i','prenom$i','mail$i@toto.fr','$mdp',1)";
+        $p = mt_rand(1, 3);
+
+        if ($p == 2 and $cpt <= 20) {
+            $cpt++;
+            $row[] = "(null,'nom$i','prenom$i','mail$i@toto.fr','$mdp','$p')";
+        } else if ($p == 3 and $cpt2 <= 30) {
+            $cpt2++;
+            $row[] = "(null,'nom$i','prenom$i','mail$i@toto.fr','$mdp','$p')";
+        } else {
+            $p = 1;
+            $row[] = "(null,'nom$i','prenom$i','mail$i@toto.fr','$mdp','$p')";
+        }
+
     }
     $sql = "insert into utilisateur values " . implode(",", $row);
     mysqli_query($link, $sql);

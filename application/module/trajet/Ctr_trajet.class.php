@@ -16,7 +16,7 @@ class Ctr_trajet extends Ctr_controleur implements I_crud {
 		$data=$u->selectAll();
 		require $this->gabarit;
 	}
-	
+
 	//$_GET["id"] : id de l'enregistrement
 	function a_edit() {		
 		$id = isset($_GET["id"]) ? $_GET["id"] : 0;
@@ -27,6 +27,20 @@ class Ctr_trajet extends Ctr_controleur implements I_crud {
 			$row=$u->emptyRecord();
 			
 		extract(array_map("mhe",$row));	
+		require $this->gabarit;		
+	}
+
+	//	$_GET["id"] : id du trajet	
+	function a_inscrit() {		
+		//récupérer les infos du trajet $id
+		$id = $_GET["id"];
+		$u=new Trajet();
+		$row=$u->select($id);					
+		extract(array_map("mhe",$row));	
+
+		//requete pour récuperér la liste des inscrits
+		$liste = Inscrire::getInscrits($id);
+		
 		require $this->gabarit;		
 	}
 
@@ -54,6 +68,7 @@ class Ctr_trajet extends Ctr_controleur implements I_crud {
 		}
 		header("location:" . hlien("trajet"));
 	}
+
 }
 
 ?>

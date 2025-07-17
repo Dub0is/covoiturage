@@ -31,7 +31,7 @@
                         </div>
                         <div class='form-group'>
                             <label for='tra_fournisseur'>Tra_fournisseur</label>
-                            <select id='tra_fournisseur' name='tra_fournisseur' class='form-select'><?=Table::HTMLselect('select * from utilisateur', 'uti_id', 'uti_id', $tra_fournisseur)?></select>
+                            <select id='tra_fournisseur' name='tra_fournisseur' class='form-select'><?=Table::HTMLselect('select * from utilisateur', 'uti_id', 'uti_nom', $tra_fournisseur)?></select>
                         </div>
 		<input class="btn btn-success" type="submit" name="btSubmit" value="Enregistrer" />
 		<input class="btn btn-warning" type="button" name="annuler" value="Annuler" onclick="history.back()" />

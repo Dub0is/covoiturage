@@ -6,6 +6,7 @@ class Utilisateur extends Table {
 	public function __construct() {
 		parent::__construct("utilisateur", "uti_id");
 	}
+
 	static public function estEmailUnique(string $uti_email) : bool {
 		$sql="select * from utilisateur where uti_adresse_mail=:mail";
 		$statement = self::$link->prepare($sql);
